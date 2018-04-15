@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Order Success!</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <h1>Hi {{checkoutDetails.name}}</h1>
+    <h2>Your Order Placed successfully for the {{cartDetails.length}} Items of Total {{ getTotal() }} Rupees. </h2>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="cancel()">OK</button>
+</div>

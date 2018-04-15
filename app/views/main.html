@@ -1,0 +1,98 @@
+<div class="default-theme">
+  <div class="page-header">
+
+  </div>
+
+  <div class="page-container">
+
+    <div ng-if="!showCartPage" class="row">
+      <div class="col-md-9 item-container">
+        <div class="row">
+          <div ng-repeat="item in itemDetails" class="col-md-3 item-container-col">
+            <div class=" item-content">
+              <div class="item-name">{{item.name}}</div>
+              <div><img src="{{item.image}}" class="item-image"/></div>
+              <div class="item-price">Price: {{item.price}}</div>
+
+              <div class="item-footer">
+                <button class="add-to-cart-btn btn btn-primary btn-block" ng-click="addToCart(item)">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>      
+      </div>
+      <div class="col-md-3 item-cart">
+        <div class="cart-details">Cart Details</div>
+        <div class="cart-item">
+          <div ng-if="cartDetails.length > 0" ng-repeat="item in cartDetails"class="row row-no-margin cart-item">
+            <div class="cart-item-name pull-left">{{item.name}}</div>
+            <div class="remove-cart-item pull-right">
+              <span class="glyphicon glyphicon-trash" ng-click="removeItem(item)"></span>
+            </div>
+            <div class="cart-item-quantity pull-right">
+              <input type="number" name="quantity" min="1" ng-model="item.quantity">
+            </div>
+          </div>
+          <div ng-if="cartDetails.length == 0" class="empty-cart-message"> Please add items in your cart</div>
+        </div>
+        <div class="cart-footer">
+          <button class="go-to-cart-btn btn btn-primary btn-block" ng-click="goToCart()">Go to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="showCartPage">
+      <div class="row row-no-margin">
+        <div class="col-md-4 item-cart">
+          <div class="cart-details">Cart Details</div>
+          <div class="cart-item">
+            <div ng-if="cartDetails.length > 0" ng-repeat="item in cartDetails"class="row row-no-margin cart-item">
+              <div class="cart-item-name pull-left">{{item.name}}</div>
+              <div class="cart-item-price pull-right">
+                <label>{{item.quantity * item.price}}</label>
+              </div>
+              <div class="cart-item-quantity pull-right">
+                <input type="number" name="quantity" min="1" ng-model="item.quantity">
+              </div>
+              <div class="remove-cart-item pull-right">
+                <span class="glyphicon glyphicon-trash" ng-click="removeItem(item)"></span>
+              </div>
+            </div>
+            <div ng-if="cartDetails.length == 0" class="empty-cart-message">No Item present in your cart</div>
+          </div>
+          <div class="cart-footer">
+            <label>Total Amount: <span class="pull-right total-count">{{ getTotal() }}</span></label>
+          </div>
+        </div>
+
+        <div class="col-md-8 check-out-details">
+          <div class="checkout-form">
+            <div class="cart-details">Check-Out Details:</div>
+            <form id="checkout-form">
+              <div class="form-group">
+                <label for="name" class="control-label">Name:</label>
+                <input type="text" ng-model="checkoutDetails.name" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="address" class="control-label">Address:</label>
+                <textarea class="form-control" id="address" ng-model="checkoutDetails.address" row="2"></textarea>
+              </div>
+                <div class="form-group">
+                <label for="phone" class="control-label">Phone No:</label>
+                <input type="text" class="form-control" ng-model="checkoutDetails.phone" id="phone">
+              </div>
+              <div class="form-group">
+                <label for="email" class="control-label">Email address:</label>
+                <input type="email" class="form-control" ng-model="checkoutDetails.email" id="email">
+              </div>
+              <div class="form-group checkout-btn">
+                <button type="submit" class="btn btn-default pull-left" ng-click="goToHome()">Go to Home</button>
+                <button type="submit" class="btn btn-primary" ng-click="checkOut()">Checkout</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
